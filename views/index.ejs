@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-    <meta charset="utf-8">
+
+  <head>
+    <meta charset="utf-8" />
     <title>氏名登録</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <h1>Sample html</h1>
-    <p>氏名登録</p>
-    <form method="POST" action="registration">
-        <input type="text" name="last_name" id="last_name"><label for="last_name">姓</label><br>
-        <input type="text" name="first_name" id="first_name"><label for="first_name">名</label><br>
-        <button type="submit">送信</button>
-    </form>
-</body>
-</html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  </head>
+  <html>
+    <div class="card container">
+      <h1 class="card-title">登録画面</h1>
+      <p class="text-center card-subtitle">氏名登録</p>
+      <div class="card-body">
+        <form method="POST" action="registration">
+          <label for="last_name" class="form-label">姓</label>
+          <input type="text" name="last_name" id="last_name" class="form-control" /><br>
+          <label for="first_name" class="form-label">名</label>
+          <input type="text" name="first_name" id="first_name" class="form-control" /><br />
+          <button type="submit" class="btn btn-primary">送信</button>
+        </form>
+      </div>
+    </div>
+    </body>
+
+  </html>
