@@ -1,0 +1,18 @@
+h1{
+    font-size: large;
+    font-style: italic;
+    color:mediumspringgreen
+}
+
+form{
+    background-color:gray;
+}
+input{
+    margin:2vw;
+}
+button{
+    margin: 3vw;
+    border-radius: 1vw;
+    background-color: dodgerblue;
+    color:white;    
+}
