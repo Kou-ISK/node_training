@@ -3,20 +3,39 @@
 
   <head>
     <meta charset="utf-8" />
-    <title>氏名登録</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <title>LINE送信</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
   <html>
-    <div class="card container">
-      <h1 class="card-title">登録画面</h1>
-      <p class="text-center card-subtitle">氏名登録</p>
+    <div class="card m-3">
+      <h1 class="card-title mt-4 ml-4">LINEメッセージ送信</h1>
+
       <div class="card-body">
-        <form method="POST" action="registration">
-          <label for="last_name" class="form-label">姓</label>
-          <input type="text" name="last_name" id="last_name" class="form-control" /><br>
-          <label for="first_name" class="form-label">名</label>
-          <input type="text" name="first_name" id="first_name" class="form-control" /><br />
-          <button type="submit" class="btn btn-primary">送信</button>
+        <form method="POST" action="send_message">
+
+          <div class="col-12">
+            <label for="message_text" class="form-label">メッセージ</label>
+            <input type="text" name="message_text" id="message_text" class="form-control" />
+          </div>
+
+          <div class="d-flex mt-3">
+            <div class="col-6">
+              <label for="sticker_package_id" class="form-label">ステッカーパッケージID</label>
+              <input type="number" name="sticker_package_id" id="sticker_package_id" class="form-control"
+                placeholder="8515" />
+            </div>
+
+            <div class="col-6">
+              <label for="sticker_id" class="form-label">ステッカーID</label>
+              <input type="text" name="sticker_id" id="sticker_id" class="form-control" placeholder="16581246" />
+            </div>
+          </div>
+
+          <div class="m-3">
+            <button type="submit" class="btn btn-primary col-12">送信</button>
+          </div>
+
         </form>
       </div>
     </div>
