@@ -4,8 +4,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const JSON = require('JSON');
 
-//githubで管理する都合上、TOKENは都度入力 
-var LINE_NOTIFY_TOKEN = "文字列";
+//githubで管理する都合上、TOKENは都度入力
+var LINE_NOTIFY_TOKEN = "";
 var LINE_NOTIFY_API = "https://notify-api.line.me/api/notify";
 
 const request = require('request');
@@ -14,7 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    res.render('/public/index.html');
+});
+
+app.get('/line_message', (req, res) => {
+    res.render('sendLine.ejs');
 });
 
 app.get('/send_message', (req, res) => {
@@ -42,6 +46,7 @@ app.post('/send_message', (req, res) => {
         console.log(response.body);
     });
     res.send('メッセージを送信しました。');
+    res.redirect('/');
 });
 
 /* 2. listen()メソッドを実行して3000番ポートで待ち受け。*/
