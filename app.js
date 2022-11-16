@@ -45,7 +45,34 @@ app.post('/send_message', (req, res) => {
         if (error) throw new Error(error);
         console.log(response.body);
     });
-    res.send('メッセージを送信しました。');
+    res.send('<script>alert("メッセージ送信に成功しました。")</script>')
+    res.redirect('/');
+});
+
+app.get('/users', (req, res) => {
+    res.render('users.ejs');
+});
+
+app.post('/registration', (req, res) => {
+    //ユーザー登録APIを叩く
+    var options = {
+        'method': 'post',
+        'url': 'http://localhost:8080/users/add',
+        "headers": { "content-type": "application/json" },
+        "json": {
+            'userName': req.body.name,
+            'email': req.body.email
+        }
+    };
+    console.log(req.body.name + req.body.email);
+    request(options, function (error, response) {
+        if (error) throw new Error(error);
+    });
+    res.send('<script>alert("ユーザー登録に成功しました。")</script>')
+    res.redirect('/');
+});
+
+app.get('/registration', (req, res) => {
     res.redirect('/');
 });
 

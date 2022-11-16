@@ -1,7 +1,7 @@
 {
   "name": "node_training",
   "version": "1.0.0",
-  "description": "",
+  "description": "- Githubには公開しない - 自分用メモ：Macのメモを見ろ。",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
