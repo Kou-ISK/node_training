@@ -10,6 +10,8 @@ var LINE_NOTIFY_API = "https://notify-api.line.me/api/notify";
 
 const request = require('request');
 
+app.set("view engine", "ejs");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
@@ -79,4 +81,21 @@ app.get('/registration', (req, res) => {
 /* 2. listen()メソッドを実行して3000番ポートで待ち受け。*/
 app.listen(3000);
 
+app.get('/postal_code', (req, res) => {
+    res.render('postal_code.ejs')
+})
 
+// レスポンスを表示できていない
+app.post('/postal_code_result', (req, res) => {
+    console.log(req.body.postal_code);
+    var options = {
+        'method': 'get',
+        'url': 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + req.body.postal_code,
+        "headers": { "content-type": "application/json" },
+    }
+    request(options, function (error, response) {
+        var data = response.body;
+        console.log(data + "98行目");
+        res.render('postal_code_result.ejs', data);
+    });
+});
