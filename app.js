@@ -1,8 +1,8 @@
 /* 1. expressモジュールをロードし、インスタンス化してappに代入。*/
 const express = require('express');
 const app = express();
+app.use(express.json());
 const bodyParser = require('body-parser');
-const JSON = require('JSON');
 
 //githubで管理する都合上、TOKENは都度入力
 var LINE_NOTIFY_TOKEN = "";
@@ -14,6 +14,7 @@ app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
 
 app.get('/', (req, res) => {
     res.render('/public/index.html');
@@ -96,6 +97,6 @@ app.post('/postal_code_result', (req, res) => {
     request(options, function (error, response) {
         var data = response.body;
         console.log(data + "98行目");
-        res.render('postal_code_result.ejs', data);
+        res.render('postal_code_result.ejs', response.body);
     });
 });

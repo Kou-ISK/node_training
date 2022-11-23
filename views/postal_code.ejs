@@ -10,33 +10,20 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-light navbar-expand bg-light">
-            <a class="navbar-brand" href="/">ナビゲーション</a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="line_message" class="nav-link">LINEを送る</a>
-                </li>
-                <li class="nav-item">
-                    <a href="users" class="nav-link">ユーザー登録API</a>
-                </li>
-                <li class="nav-item">
-                    <a href="postal_code" class="nav-link">郵便番号API</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="card m-3">
-            <h1 class="card-title mt-4 ml-4">郵便番号</h1>
-            <div class="card-body">
-                <form method="POST" action="postal_code_result">
-                    <div class="col-12">
-                        <label for="postal_code" class="form-label">郵便番号</label>
-                        <input name="postal_code" id="postal_code" class="form-control my-2" type="number"
-                            placeholder="郵便番号">
-                        <button type="submit" class="btn btn-primary col-12 my-2">送信</button>
-                    </div>
-                </form>
+        <%- include('./partials/head'); %>
+            <div class="card m-3">
+                <h1 class="card-title mt-4 ml-4">郵便番号</h1>
+                <div class="card-body">
+                    <form method="POST" action="postal_code_result">
+                        <div class="col-12">
+                            <label for="postal_code" class="form-label">郵便番号</label>
+                            <input name="postal_code" id="postal_code" class="form-control my-2" type="number"
+                                placeholder="郵便番号">
+                            <button type="submit" class="btn btn-primary col-12 my-2">送信</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
 
     </body>
 

@@ -10,36 +10,23 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-light navbar-expand bg-light">
-            <a class="navbar-brand" href="/">ナビゲーション</a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="line_message" class="nav-link">LINEを送る</a>
-                </li>
-                <li class="nav-item">
-                    <a href="users" class="nav-link">ユーザー登録API</a>
-                </li>
-                <li class="nav-item">
-                    <a href="postal_code" class="nav-link">郵便番号API</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="card m-3">
-            <h1 class="card-title">
-                <%- address1 %>
-            </h1>
-            <div class="card-body">
-                <p>
-                    <%- address2 %>
-                </p>
-                <p>
-                    <%- address3 %>
-                </p>
-                <p>
-                    <%- zipcode %>
-                </p>
+        <%- include('./partials/head'); %>
+            <div class="card m-3">
+                <h1 class="card-title">
+                    <%= response.body.result.address1 %>
+                </h1>
+                <div class="card-body">
+                    <p>
+                        <%= response.body.result.address2 %>
+                    </p>
+                    <p>
+                        <%= response.body.result.address3 %>
+                    </p>
+                    <p>
+                        <%= response.body.result.zipcode %>
+                    </p>
+                </div>
             </div>
-        </div>
     </body>
 
 </html>

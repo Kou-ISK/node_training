@@ -9,49 +9,39 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-light navbar-expand bg-light">
-      <a class="navbar-brand" href="/">ナビゲーション</a>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a href="line_message" class="nav-link">LINEを送る</a>
-        </li>
-        <li class="nav-item">
-          <a href="users" class="nav-link">ユーザー登録API</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="card m-3">
-      <h1 class="card-title mt-4 ml-4">LINEメッセージ送信</h1>
+    <%- include('./partials/head'); %>
+      <div class="card m-3">
+        <h1 class="card-title mt-4 ml-4">LINEメッセージ送信</h1>
 
-      <div class="card-body">
-        <form method="POST" action="send_message">
+        <div class="card-body">
+          <form method="POST" action="send_message">
 
-          <div class="col-12">
-            <label for="message_text" class="form-label">メッセージ</label>
-            <textarea name="message_text" id="message_text" class="form-control" placeholder="ここにメッセージを入力"></textarea>
-          </div>
-
-          <div class="d-flex mt-3">
-            <!-- LINEスタンプID情報 https://developers.line.biz/ja/docs/messaging-api/sticker-list/#sticker-definitions -->
-            <div class="col-6">
-              <label for="sticker_package_id" class="form-label">ステッカーパッケージID</label>
-              <input type="number" name="sticker_package_id" id="sticker_package_id" class="form-control"
-                placeholder="8515" />
+            <div class="col-12">
+              <label for="message_text" class="form-label">メッセージ</label>
+              <textarea name="message_text" id="message_text" class="form-control" placeholder="ここにメッセージを入力"></textarea>
             </div>
 
-            <div class="col-6">
-              <label for="sticker_id" class="form-label">ステッカーID</label>
-              <input type="text" name="sticker_id" id="sticker_id" class="form-control" placeholder="16581246" />
+            <div class="d-flex mt-3">
+              <!-- LINEスタンプID情報 https://developers.line.biz/ja/docs/messaging-api/sticker-list/#sticker-definitions -->
+              <div class="col-6">
+                <label for="sticker_package_id" class="form-label">ステッカーパッケージID</label>
+                <input type="number" name="sticker_package_id" id="sticker_package_id" class="form-control"
+                  placeholder="8515" />
+              </div>
+
+              <div class="col-6">
+                <label for="sticker_id" class="form-label">ステッカーID</label>
+                <input type="text" name="sticker_id" id="sticker_id" class="form-control" placeholder="16581246" />
+              </div>
             </div>
-          </div>
 
-          <div class="m-3">
-            <button type="submit" class="btn btn-primary col-12">送信</button>
-          </div>
+            <div class="m-3">
+              <button type="submit" class="btn btn-primary col-12">送信</button>
+            </div>
 
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
   </body>
 
 </html>
