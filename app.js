@@ -71,7 +71,7 @@ app.post('/registration', (req, res) => {
     request(options, function (error, response) {
         if (error) throw new Error(error);
     });
-    res.send('<script>alert("ユーザー登録に成功しました。")</script>')
+    res.send('<script>alert("ユーザー登録に成功しました。")</script>');
     res.redirect('/');
 });
 
@@ -86,17 +86,26 @@ app.get('/postal_code', (req, res) => {
     res.render('postal_code.ejs')
 })
 
-// レスポンスを表示できていない
+// アラートからリダイレクト時にどうするか？
 app.post('/postal_code_result', (req, res) => {
-    console.log(req.body.postal_code);
     var options = {
         'method': 'get',
         'url': 'https://zipcloud.ibsnet.co.jp/api/search?zipcode=' + req.body.postal_code,
         "headers": { "content-type": "application/json" },
     }
     request(options, function (error, response) {
-        var data = response.body;
-        console.log(data + "98行目");
-        res.render('postal_code_result.ejs', response.body);
+        var data = JSON.parse(response.body);
+        if (data.results == null) {
+            res.redirect('/postal_code');
+            // res.send('<script>alert("その郵便番号は存在しません")</script>');
+        } else {
+            console.log(data);
+            console.log(data.results[0].address1);
+            res.render('postal_code_result.ejs', { item: data.results[0] });
+        }
     });
+});
+
+app.get('/postal_code_result', (req, res) => {
+    res.redirect('/postal_code');
 });
