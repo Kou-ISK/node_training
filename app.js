@@ -109,3 +109,7 @@ app.post('/postal_code_result', (req, res) => {
 app.get('/postal_code_result', (req, res) => {
     res.redirect('/postal_code');
 });
+
+app.get('/canvas', (req, res) => {
+    res.render('canvas.ejs');
+})
