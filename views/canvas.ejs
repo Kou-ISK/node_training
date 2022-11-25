@@ -5,81 +5,13 @@
         <meta charset="UTF-8">
         <title>canvasで棒人間</title>
         <script type="text/javascript">
-
-            function test() {
+            function draw() {
                 //描画コンテキストの取得
                 var canvas = document.getElementById('sample');
                 if (canvas.getContext) {
                     console.log('描画開始');
                     var context = canvas.getContext('2d');
-                    var shoulderX = 400;
-                    var shoulderY = 200;
-                    var doutaiLength = 90;
-                    var hizaUeLength = 50;
-                    var hizaShitaLength = 50;
-                    var footLength = 27;
-                    //地面と胴体の角度
-                    var doutaiAngle = 5;
-                    //地面と太ももの角度
-                    var kokansetsuAngle = 80;
-                    //地面と脛の角度
-                    var kneeAngle = 0;
-                    //地面と足の角度
-                    var ankleAngle = 110;
-                    //各点の座標
-                    var kokansetsuX = shoulderX + doutaiLength * Math.cos(doutaiAngle * (Math.PI / 180));
-                    var kokansetsuY = shoulderY + doutaiLength * Math.sin(doutaiAngle * (Math.PI / 180));
-                    var kneeX = kokansetsuX + hizaUeLength * Math.cos(kokansetsuAngle * (Math.PI / 180));
-                    var kneeY = kokansetsuY + hizaUeLength * Math.sin(kokansetsuAngle * (Math.PI / 180));
-                    var ankleX = kneeX + hizaShitaLength * Math.cos(kneeAngle * (Math.PI / 180));
-                    var ankleY = kneeY + hizaShitaLength * Math.sin(kneeAngle * (Math.PI / 180));
-                    var toeX = ankleX + footLength * Math.cos(ankleAngle * (Math.PI / 180));
-                    var toeY = ankleY + footLength * Math.sin(ankleAngle * (Math.PI / 180));
-                    //ここに具体的な描画内容を指定する
-                    //新しいパスを開始する
-                    //　円を描く（頭の部分）
-                    context.beginPath();
-                    context.strokeStyle = '#FFF';//　線の色調整
-                    context.lineWidth = 2;//　線の太さ調整
-                    context.arc(shoulderX - 6, shoulderY, 10, 0, Math.PI * 2, false);
-                    context.stroke();
-                    context.beginPath();
-                    context.strokeStyle = '#FFF';
-                    //パスの開始座標を指定する
-                    context.moveTo(shoulderX, shoulderY);
-                    //座標を指定してラインを引いていく
-                    context.lineTo(kokansetsuX, kokansetsuY);
-                    //現在のパスを輪郭表示する
-                    context.stroke();
-                    context.beginPath();
-                    context.lineWidth = 2;
-                    context.moveTo(kokansetsuX, kokansetsuY);
-                    context.lineTo(kneeX, kneeY);
-                    //現在のパスを輪郭表示する
-                    context.stroke();
-                    context.beginPath();
-                    context.lineWidth = 2;
-                    context.moveTo(kneeX, kneeY);
-                    context.lineTo(ankleX, ankleY);
-                    //現在のパスを輪郭表示する
-                    context.stroke();
-                    context.beginPath();
-                    context.lineWidth = 2;
-                    context.moveTo(ankleX, ankleY);
-                    context.lineTo(toeX, toeY);
-                    //パスを閉じる（最後の座標から開始座標に向けてラインを引く）
-                    //context.closePath();
-                    //現在のパスを輪郭表示する
-                    context.stroke();
-                }
-            }
-
-            function draw() {
-                //描画コンテキストの取得
-                var canvas = document.getElementById('myCanvas');
-                if (canvas.getContext) {
-                    console.log('描画開始');
-                    var context = canvas.getContext('2d');
+                    context.clearRect(0, 0, canvas.width, canvas.height);
                     var shoulderX = 400;
                     var shoulderY = 200;
                     var doutaiLength = 90;
@@ -88,12 +20,12 @@
                     var footLength = 27;
                     //地面と胴体の角度
                     var doutaiAngle = document.getElementById('doutaiAngle').value;
-                    //地面と太ももの角度
-                    var kokansetsuAngle = document.getElementById('kokansetsuAngle').value;
-                    //地面と脛の角度
-                    var kneeAngle = document.getElementById('kneeAngle').value;
+                    //股関節の角度
+                    var kokansetsuAngle = 180 - Number(document.getElementById('kokansetsuAngle').value) + Number(doutaiAngle);
+                    //膝の角度
+                    var kneeAngle = Number(document.getElementById('kneeAngle').value) - Number(document.getElementById('kokansetsuAngle').value) + Number(doutaiAngle);
                     //地面と足の角度
-                    var ankleAngle = document.getElementById('ankleAngle').value;
+                    var ankleAngle = 90 - Number(document.getElementById('ankleAngle').value) + Number(document.getElementById('kneeAngle').value);
                     //各点の座標
                     var kokansetsuX = shoulderX + doutaiLength * Math.cos(doutaiAngle * (Math.PI / 180));
                     var kokansetsuY = shoulderY + doutaiLength * Math.sin(doutaiAngle * (Math.PI / 180));
@@ -109,7 +41,7 @@
                     context.beginPath();
                     context.strokeStyle = '#FFF';//　線の色調整
                     context.lineWidth = 2;//　線の太さ調整
-                    context.arc(shoulderX - 6, shoulderY, 10, 0, Math.PI * 2, false);
+                    context.arc(shoulderX - 10, shoulderY, 10, 0, Math.PI * 2, false);
                     context.stroke();
                     context.beginPath();
                     context.strokeStyle = '#FFF';
@@ -139,28 +71,62 @@
                     //context.closePath();
                     //現在のパスを輪郭表示する
                     context.stroke();
+
+                    // 関節の描画
+                    context.beginPath();
+                    context.strokeStyle = '#900'
+                    context.arc(shoulderX, shoulderY, 3, 0, Math.PI * 2, false);
+                    context.fillStyle = '#900'
+                    context.fill();
+                    context.stroke();
+                    context.beginPath();
+                    context.strokeStyle = '#900'
+                    context.arc(kokansetsuX, kokansetsuY, 3, 0, Math.PI * 2, false);
+                    context.fillStyle = '#900'
+                    context.fill();
+                    context.stroke();
+                    context.beginPath();
+                    context.strokeStyle = '#900'
+                    context.arc(kneeX, kneeY, 3, 0, Math.PI * 2, false);
+                    context.fillStyle = '#900'
+                    context.fill();
+                    context.stroke();
+                    context.beginPath();
+                    context.strokeStyle = '#900'
+                    context.arc(ankleX, ankleY, 3, 0, Math.PI * 2, false);
+                    context.fillStyle = '#900'
+                    context.fill();
+                    context.stroke();
+                    context.beginPath();
+                    context.strokeStyle = '#900'
+                    context.arc(toeX, toeY, 3, 0, Math.PI * 2, false);
+                    context.fillStyle = '#900'
+                    context.fill();
+                    context.stroke();
                 }
             }
 
         </script>
     </head>
 
-    <body onLoad="test()">
-        <h2>Canvasで棒人間描画</h2>
+    <body onLoad="draw()">
+        <h2>Canvasでスクラム棒人間描画</h2>
         <canvas width="800" height="400" id="sample" style="background-color:black">
             図形を表示するには、canvasタグをサポートしたブラウザが必要です。
         </canvas>
-
-        <form>
-            <input type="number" id="doutaiAngle">
-            <input type="number" id="kokansetsuAngle">
-            <input type="number" id="kneeAngle">
-            <input type="number" id="ankleAngle">
-            <button type="submit" onClick="draw()">描画</button>
-        </form>
-        <canvas width="800" height="400" id="myCanvas" style="background-color:black">
-            図形を表示するには、canvasタグをサポートしたブラウザが必要です。
-        </canvas>
+        <div>
+            <label for="doutaiAngle">上体の角度</label>
+            <input type="number" id="doutaiAngle" value="5" onChange="draw()">
+            <br>
+            <label for="kokansetsuAngle">股関節の角度</label>
+            <input type="number" id="kokansetsuAngle" value="95" onChange="draw()">
+            <br>
+            <label for="kneeAngle">膝の角度</label>
+            <input type="number" id="kneeAngle" value="110" onChange="draw()">
+            <br>
+            <label for="ankleAngle">足首の角度</label>
+            <input type="number" id="ankleAngle" value="110" onChange="draw()">
+        </div>
     </body>
 
 </html>
