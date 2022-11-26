@@ -3,6 +3,8 @@
 
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <title>canvasで棒人間</title>
         <script type="text/javascript">
             function draw() {
@@ -12,11 +14,11 @@
                     console.log('描画開始');
                     var context = canvas.getContext('2d');
                     context.clearRect(0, 0, canvas.width, canvas.height);
-                    var shoulderX = 400;
-                    var shoulderY = 200;
-                    var doutaiLength = 90;
-                    var hizaUeLength = 50;
-                    var hizaShitaLength = 50;
+                    var shoulderX = 100;
+                    var shoulderY = 70;
+                    var doutaiLength = Number(document.getElementById('bodyHeight').value) * 0.55;
+                    var hizaUeLength = Number(document.getElementById('bodyHeight').value) * 0.45 * 3 / 8;
+                    var hizaShitaLength = Number(document.getElementById('bodyHeight').value) * 0.45 * 5 / 8;
                     var footLength = 27;
                     //地面と胴体の角度
                     var doutaiAngle = document.getElementById('doutaiAngle').value;
@@ -110,23 +112,49 @@
     </head>
 
     <body onLoad="draw()">
-        <h2>Canvasでスクラム棒人間描画</h2>
-        <canvas width="800" height="400" id="sample" style="background-color:black">
-            図形を表示するには、canvasタグをサポートしたブラウザが必要です。
-        </canvas>
-        <div>
-            <label for="doutaiAngle">上体の角度</label>
-            <input type="number" id="doutaiAngle" value="5" onChange="draw()">
-            <br>
-            <label for="kokansetsuAngle">股関節の角度</label>
-            <input type="number" id="kokansetsuAngle" value="95" onChange="draw()">
-            <br>
-            <label for="kneeAngle">膝の角度</label>
-            <input type="number" id="kneeAngle" value="110" onChange="draw()">
-            <br>
-            <label for="ankleAngle">足首の角度</label>
-            <input type="number" id="ankleAngle" value="110" onChange="draw()">
-        </div>
+        <%- include('./partials/head'); %>
+            <h1 class="m-3">Canvasでスクラム棒人間描画</h2>
+                <div class="mt-4 d-flex container-fluid">
+                    <div class="mx-1 bg-light">
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">身長</span>
+                            </div>
+                            <input type="number" id="bodyHeight" class="form-control" value="175" onChange="draw()">
+                        </div>
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">上体の角度</span>
+                            </div>
+                            <input type="number" id="doutaiAngle" class="form-control" value="5" onChange="draw()">
+                        </div>
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">股関節の角度</span>
+                            </div>
+                            <input type="number" id="kokansetsuAngle" class="form-control" value="95" onChange="draw()">
+                        </div>
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">膝の角度</span>
+                            </div>
+                            <input type="number" id="kneeAngle" class="form-control" value="110" onChange="draw()">
+                        </div>
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">足首の角度</span>
+                            </div>
+                            <input type="number" id="ankleAngle" class="form-control" value="110" onChange="draw()">
+                        </div>
+                    </div>
+
+                    <div class="ml-5">
+                        <p class="text-center">描画エリア</p>
+                        <canvas width="300" height="250" id="sample" style="background-color:rgb(26, 29, 38)">
+                            図形を表示するには、canvasタグをサポートしたブラウザが必要です。
+                        </canvas>
+                    </div>
+                </div>
     </body>
 
 </html>
