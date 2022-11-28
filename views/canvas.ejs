@@ -14,64 +14,90 @@
                     console.log('描画開始');
                     var context = canvas.getContext('2d');
                     context.clearRect(0, 0, canvas.width, canvas.height);
-                    var shoulderX = 100;
-                    var shoulderY = 70;
-                    var doutaiLength = Number(document.getElementById('bodyHeight').value) * 0.55;
+                    var toeX = 250;
+                    var toeY = 245;
+                    var doutaiLength = Number(document.getElementById('bodyHeight').value) * 0.55 * 2 / 3;
+                    var headRadius = Number(document.getElementById('bodyHeight').value) * 0.55 * 1 / 8;
+                    var neckLength = Number(document.getElementById('bodyHeight').value) * 0.55 * 1 / 12;
                     var hizaUeLength = Number(document.getElementById('bodyHeight').value) * 0.45 * 3 / 8;
                     var hizaShitaLength = Number(document.getElementById('bodyHeight').value) * 0.45 * 5 / 8;
-                    var footLength = 27;
-                    //地面と胴体の角度
-                    var doutaiAngle = document.getElementById('doutaiAngle').value;
-                    //股関節の角度
-                    var kokansetsuAngle = 180 - Number(document.getElementById('kokansetsuAngle').value) + Number(doutaiAngle);
-                    //膝の角度
-                    var kneeAngle = Number(document.getElementById('kneeAngle').value) - Number(document.getElementById('kokansetsuAngle').value) + Number(doutaiAngle);
+                    var footLength = 24;
                     //地面と足の角度
-                    var ankleAngle = 90 - Number(document.getElementById('ankleAngle').value) + Number(document.getElementById('kneeAngle').value);
+                    var footAngle = Number(document.getElementById('footAngle').value);
+                    //足首の角度
+                    var ankleAngle = Number(document.getElementById('ankleAngle').value) + footAngle - 180;
+                    //膝の角度
+                    var kneeAngle = 180 - (Number(document.getElementById('kneeAngle').value) - ankleAngle);
+                    //股関節の角度
+                    var kokansetsuAngle = Number(document.getElementById('kokansetsuAngle').value) + kneeAngle - 180;
+                    //首の角度
+                    //TODO 首の角度を求める
+                    var neckAngle = Number(document.getElementById('neckAngle').value) - kokansetsuAngle;
+
+
+
+
                     //各点の座標
-                    var kokansetsuX = shoulderX + doutaiLength * Math.cos(doutaiAngle * (Math.PI / 180));
-                    var kokansetsuY = shoulderY + doutaiLength * Math.sin(doutaiAngle * (Math.PI / 180));
-                    var kneeX = kokansetsuX + hizaUeLength * Math.cos(kokansetsuAngle * (Math.PI / 180));
-                    var kneeY = kokansetsuY + hizaUeLength * Math.sin(kokansetsuAngle * (Math.PI / 180));
-                    var ankleX = kneeX + hizaShitaLength * Math.cos(kneeAngle * (Math.PI / 180));
-                    var ankleY = kneeY + hizaShitaLength * Math.sin(kneeAngle * (Math.PI / 180));
-                    var toeX = ankleX + footLength * Math.cos(ankleAngle * (Math.PI / 180));
-                    var toeY = ankleY + footLength * Math.sin(ankleAngle * (Math.PI / 180));
-                    //ここに具体的な描画内容を指定する
+                    // var kokansetsuX = shoulderX + doutaiLength * Math.cos(doutaiAngle * (Math.PI / 180));
+                    // var kokansetsuY = shoulderY + doutaiLength * Math.sin(doutaiAngle * (Math.PI / 180));
+                    // var kneeX = kokansetsuX + hizaUeLength * Math.cos(kokansetsuAngle * (Math.PI / 180));
+                    // var kneeY = kokansetsuY + hizaUeLength * Math.sin(kokansetsuAngle * (Math.PI / 180));
+                    // var ankleX = kneeX + hizaShitaLength * Math.cos(kneeAngle * (Math.PI / 180));
+                    // var ankleY = kneeY + hizaShitaLength * Math.sin(kneeAngle * (Math.PI / 180));
+                    // var toeX = ankleX + footLength * Math.cos(ankleAngle * (Math.PI / 180));
+                    // var toeY = ankleY + footLength * Math.sin(ankleAngle * (Math.PI / 180));
+                    var ankleX = toeX - footLength * Math.cos(footAngle * (Math.PI / 180));
+                    var ankleY = toeY - footLength * Math.sin(footAngle * (Math.PI / 180));
+                    var kneeX = ankleX - hizaShitaLength * Math.cos(ankleAngle * (Math.PI / 180));
+                    var kneeY = ankleY - hizaShitaLength * Math.sin(ankleAngle * (Math.PI / 180));
+                    var kokansetsuX = kneeX - hizaUeLength * Math.cos(kneeAngle * (Math.PI / 180));
+                    var kokansetsuY = kneeY - hizaUeLength * Math.sin(kneeAngle * (Math.PI / 180));
+                    var shoulderX = kokansetsuX - doutaiLength * Math.cos(kokansetsuAngle * (Math.PI / 180));
+                    var shoulderY = kokansetsuY - doutaiLength * Math.sin(kokansetsuAngle * (Math.PI / 180));
+                    var headX = shoulderX - ((neckLength + headRadius) * Math.cos(neckAngle * (Math.PI / 180)));
+                    var headY = shoulderY - ((neckLength + headRadius) * Math.sin(neckAngle * (Math.PI / 180)));
+
                     //新しいパスを開始する
-                    //　円を描く（頭の部分）
-                    context.beginPath();
-                    context.strokeStyle = '#FFF';//　線の色調整
-                    context.lineWidth = 2;//　線の太さ調整
-                    context.arc(shoulderX - 10, shoulderY, 10, 0, Math.PI * 2, false);
-                    context.stroke();
-                    context.beginPath();
-                    context.strokeStyle = '#FFF';
-                    //パスの開始座標を指定する
-                    context.moveTo(shoulderX, shoulderY);
-                    //座標を指定してラインを引いていく
-                    context.lineTo(kokansetsuX, kokansetsuY);
-                    //現在のパスを輪郭表示する
-                    context.stroke();
                     context.beginPath();
                     context.lineWidth = 2;
-                    context.moveTo(kokansetsuX, kokansetsuY);
-                    context.lineTo(kneeX, kneeY);
-                    //現在のパスを輪郭表示する
+                    context.moveTo(toeX, toeY);
+                    context.lineTo(ankleX, ankleY);
+                    context.strokeStyle = '#FFF';
                     context.stroke();
+
+                    context.beginPath();
+                    context.lineWidth = 2;
+                    context.moveTo(kneeX, kneeY);
+                    context.lineTo(kokansetsuX, kokansetsuY);
+                    context.stroke();
+
+                    context.beginPath();
+                    context.strokeStyle = '#FFF';
+                    context.moveTo(kokansetsuX, kokansetsuY);
+                    context.lineTo(shoulderX, shoulderY);
+                    context.stroke();
+
+
                     context.beginPath();
                     context.lineWidth = 2;
                     context.moveTo(kneeX, kneeY);
                     context.lineTo(ankleX, ankleY);
-                    //現在のパスを輪郭表示する
                     context.stroke();
+
                     context.beginPath();
                     context.lineWidth = 2;
-                    context.moveTo(ankleX, ankleY);
-                    context.lineTo(toeX, toeY);
+                    context.moveTo(shoulderX, shoulderY);
+                    context.lineTo(headX, headY);
+
                     //パスを閉じる（最後の座標から開始座標に向けてラインを引く）
                     //context.closePath();
                     //現在のパスを輪郭表示する
+                    context.stroke();
+                    //　円を描く（頭の部分）
+                    context.beginPath();
+                    context.strokeStyle = '#FFF';//　線の色調整
+                    context.lineWidth = 2;//　線の太さ調整
+                    context.arc(headX, headY, headRadius, 0, Math.PI * 2, false);
                     context.stroke();
 
                     // 関節の描画
@@ -124,15 +150,15 @@
                         </div>
                         <div class="input-group my-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">上体の角度</span>
+                                <span class="input-group-text">首の角度</span>
                             </div>
-                            <input type="number" id="doutaiAngle" class="form-control" value="5" onChange="draw()">
+                            <input type="number" id="neckAngle" class="form-control" value="5" onChange="draw()">
                         </div>
                         <div class="input-group my-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">股関節の角度</span>
                             </div>
-                            <input type="number" id="kokansetsuAngle" class="form-control" value="95" onChange="draw()">
+                            <input type="number" id="kokansetsuAngle" class="form-control" value="90" onChange="draw()">
                         </div>
                         <div class="input-group my-3">
                             <div class="input-group-prepend">
@@ -144,7 +170,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">足首の角度</span>
                             </div>
-                            <input type="number" id="ankleAngle" class="form-control" value="110" onChange="draw()">
+                            <input type="number" id="ankleAngle" class="form-control" value="55" onChange="draw()">
+                        </div>
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">地面と足の角度</span>
+                            </div>
+                            <input type="number" id="footAngle" class="form-control" value="145" onChange="draw()">
                         </div>
                     </div>
 
