@@ -110,6 +110,6 @@ app.get('/postal_code_result', (req, res) => {
     res.redirect('/postal_code');
 });
 
-app.get('/canvas', (req, res) => {
-    res.render('canvas.ejs');
+app.get('/scrum', (req, res) => {
+    res.render('scrum.ejs');
 })

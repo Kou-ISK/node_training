@@ -5,7 +5,8 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
             integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <title>canvasで棒人間</title>
+        <title>スクラム描画
+        </title>
         <script type="text/javascript">
             function draw() {
                 //描画コンテキストの取得
@@ -31,21 +32,10 @@
                     //股関節の角度
                     var kokansetsuAngle = Number(document.getElementById('kokansetsuAngle').value) + kneeAngle - 180;
                     //首の角度
-                    //TODO 首の角度を求める
-                    var neckAngle = Number(document.getElementById('neckAngle').value) - kokansetsuAngle;
-
-
+                    var neckAngle = Number(document.getElementById('neckAngle').value) + kokansetsuAngle;
 
 
                     //各点の座標
-                    // var kokansetsuX = shoulderX + doutaiLength * Math.cos(doutaiAngle * (Math.PI / 180));
-                    // var kokansetsuY = shoulderY + doutaiLength * Math.sin(doutaiAngle * (Math.PI / 180));
-                    // var kneeX = kokansetsuX + hizaUeLength * Math.cos(kokansetsuAngle * (Math.PI / 180));
-                    // var kneeY = kokansetsuY + hizaUeLength * Math.sin(kokansetsuAngle * (Math.PI / 180));
-                    // var ankleX = kneeX + hizaShitaLength * Math.cos(kneeAngle * (Math.PI / 180));
-                    // var ankleY = kneeY + hizaShitaLength * Math.sin(kneeAngle * (Math.PI / 180));
-                    // var toeX = ankleX + footLength * Math.cos(ankleAngle * (Math.PI / 180));
-                    // var toeY = ankleY + footLength * Math.sin(ankleAngle * (Math.PI / 180));
                     var ankleX = toeX - footLength * Math.cos(footAngle * (Math.PI / 180));
                     var ankleY = toeY - footLength * Math.sin(footAngle * (Math.PI / 180));
                     var kneeX = ankleX - hizaShitaLength * Math.cos(ankleAngle * (Math.PI / 180));
@@ -139,7 +129,7 @@
 
     <body onLoad="draw()">
         <%- include('./partials/head'); %>
-            <h1 class="m-3">Canvasでスクラム棒人間描画</h2>
+            <h1 class="m-3">スクラム描画</h2>
                 <div class="mt-4 d-flex container-fluid">
                     <div class="mx-1 bg-light">
                         <div class="input-group my-3">
