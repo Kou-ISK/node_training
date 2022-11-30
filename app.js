@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 
 app.get('/', (req, res) => {
-    res.render('/public/index.html');
+    res.render('index.ejs');
 });
 
 app.get('/line_message', (req, res) => {
