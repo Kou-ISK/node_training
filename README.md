@@ -13,3 +13,6 @@
 1. `API_training`配下で`docker compose up`を実行
 2. `node_training`配下で`npm init`、`node app.js`を実行
 3. `localhost:3000/`にアクセス
+
+## 郵便番号API
+## スクラム描画

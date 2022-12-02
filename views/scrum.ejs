@@ -124,6 +124,13 @@
                 }
             }
 
+            function triple() {
+                document.getElementById('kokansetsuAngle').setAttribute('value', Number(document.getElementById('kokansetsuAngle').value) + Number(document.getElementById('tripleExtensionAngle').value))
+                document.getElementById('kneeAngle').setAttribute('value', Number(document.getElementById('kneeAngle').value) + Number(document.getElementById('tripleExtensionAngle').value))
+                document.getElementById('ankleAngle').setAttribute('value', Number(document.getElementById('ankleAngle').value) + Number(document.getElementById('tripleExtensionAngle').value))
+                document.getElementById('footAngle').setAttribute('value', Number(document.getElementById('footAngle').value) - Number(document.getElementById('tripleExtensionAngle').value))
+                draw()
+            }
         </script>
     </head>
 
@@ -177,6 +184,17 @@
                         </canvas>
                     </div>
                 </div>
+                <div class="ml-3 row">
+                    <div class="col btn btn-primary my-3" onClick="triple()" style="max-width: 20vw;">Triple Extension
+                    </div>
+                    <div class="col input-group my-3" style="max-width: 35vw;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">伸展する角度</span>
+                        </div>
+                        <input type="number" id="tripleExtensionAngle" class="form-control" value="5">
+                    </div>
+                </div>
+
     </body>
 
 </html>
