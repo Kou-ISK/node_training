@@ -75,6 +75,26 @@ app.post('/registration', (req, res) => {
     res.redirect('/');
 });
 
+app.get('/find_all', (req, res) => {
+    //ユーザー取得APIを叩く
+    var options = {
+        'method': 'get',
+        'url': 'http://localhost:8080/user',
+        "headers": { "content-type": "application/json" },
+    };
+    request(options, function (error, response) {
+        console.log(response.body);
+        var data = JSON.parse(response.body);
+        if (data == null) {
+            res.redirect('/postal_code');
+            // res.send('<script>alert("その郵便番号は存在しません")</script>');
+        } else {
+            console.log(data);
+            res.render('user_list.ejs', { items: data });
+        }
+    });
+});
+
 app.get('/registration', (req, res) => {
     res.redirect('/');
 });
