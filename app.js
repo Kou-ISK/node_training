@@ -99,6 +99,24 @@ app.get('/registration', (req, res) => {
     res.redirect('/');
 });
 
+app.get('/find_user', (req, res) => {
+    var options = {
+        'method': 'get',
+        'url': 'http://localhost:8080/user/' + req.query.id,
+        "headers": { "content-type": "application/json" },
+    };
+    request(options, function (error, response) {
+        console.log(req.query.id);
+        var data = JSON.parse(response.body);
+        if (data == null) {
+        } else {
+            console.log(data);
+            res.render('user.ejs', { item: data });
+        }
+    });
+});
+
+
 /* 2. listen()メソッドを実行して3000番ポートで待ち受け。*/
 app.listen(3000);
 
