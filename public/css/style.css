@@ -1,18 +1,54 @@
-h1{
+h1 {
     font-size: large;
     font-style: italic;
-    color:mediumspringgreen
+    color: mediumspringgreen
 }
 
-form{
-    background-color:gray;
+input {
+    margin: 2vw;
 }
-input{
-    margin:2vw;
-}
-button{
+
+button {
     margin: 3vw;
     border-radius: 1vw;
     background-color: dodgerblue;
-    color:white;    
+    color: white;
+}
+
+/* モーダル部分 */
+.find-all-user-modal-wrapper,
+.find-user-by-id-modal-wrapper,
+.user-registration-modal-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    display: none;
+}
+
+.modal {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background-color: #e6ecf0;
+    padding: 20px 0 40px;
+    border-radius: 10px;
+    width: 80vw;
+    height: auto;
+    text-align: center;
+}
+
+.fa-times {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: rgba(242, 241, 241, 0.873);
+    cursor: pointer;
+}
+
+#registration-form,
+#find-user-form {
+    width: 100%;
 }

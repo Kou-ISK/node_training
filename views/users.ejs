@@ -6,43 +6,24 @@
         <title>ユーザー登録API</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
             integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
     </head>
 
     <body>
         <%- include('./partials/head'); %>
             <div class="card m-3">
-                <h1 class="card-title mt-4 ml-4">ユーザー登録</h1>
-                <div class="card-body">
-                    <form method="POST" action="registration">
-                        <div class="col-12">
-                            <label for="name" class="form-label">ユーザー名</label>
-                            <input name="name" id="name" class="form-control my-2" type="text"
-                                placeholder="ユーザー名"></textarea>
-                            <label for="email" class="form-label">メールアドレス</label>
-                            <input type="email" name="email" id="email" class="form-control my-2"
-                                placeholder="メールアドレス" />
-                            <button type="submit" class="btn btn-primary col-12 my-2">送信</button>
-                        </div>
-                    </form>
-                </div>
+                <a class="m-2 user-registration-show text-center">ユーザー登録</a>
+                <%- include('./partials/user_registration'); %>
             </div>
             <div class="card m-3">
-                <h1 class="card-title mt-4 ml-4">全ユーザー取得</h1>
-                <div class="card-body">
-                    <form method="GET" action="find_all">
-                        <button type="submit" class="btn btn-primary col-12 my-2">送信</button>
-                    </form>
-                </div>
+                <a class="m-2 find-all-user-show text-center">全ユーザー取得</a>
+                <%- include('./partials/find_all_user'); %>
             </div>
             <div class="card m-3">
-                <h1 class="card-title mt-4 ml-4">ユーザー取得</h1>
-                <div class="card-body">
-                    <form method="GET" action="find_user">
-                        <label for="id" class="form-label">ユーザーID</label>
-                        <input type="number" name="id" id="id" class="form-control my-2" placeholder="ユーザーID" />
-                        <button type="submit" class="btn btn-primary col-12 my-2">送信</button>
-                    </form>
-                </div>
+                <a class="m-2 find-user-by-id-show text-center">ユーザー取得</a>
+                <%- include('./partials/find_user_by_id'); %>
             </div>
     </body>
 
