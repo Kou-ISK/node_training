@@ -19,19 +19,33 @@
                             <th>ユーザー名</th>
                             <th>メールアドレス</th>
                         </tr>
-                        <% items.forEach(function(item){ %>
-                            <tr>
-                                <td>
-                                    <%= item.userId %>
-                                </td>
-                                <td>
-                                    <%= item.userName %>
-                                </td>
-                                <td>
-                                    <%= item.email %>
-                                </td>
-                            </tr>
-                            <% }); %>
+                        <% if(typeof items !=='undefined' ){ %>
+                            <% items.forEach(function(item){ %>
+                                <tr>
+                                    <td>
+                                        <%= item.userId %>
+                                    </td>
+                                    <td>
+                                        <%= item.userName %>
+                                    </td>
+                                    <td>
+                                        <%= item.email %>
+                                    </td>
+                                </tr>
+                                <% });%>
+                                    <%}else{ %>
+                                        <tr>
+                                            <td>
+                                                <%= item.userId %>
+                                            </td>
+                                            <td>
+                                                <%= item.userName %>
+                                            </td>
+                                            <td>
+                                                <%= item.email %>
+                                            </td>
+                                        </tr>
+                                        <% }%>
                     </table>
                 </div>
             </div>

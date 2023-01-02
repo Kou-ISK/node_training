@@ -111,7 +111,7 @@ app.get('/find_user', (req, res) => {
         if (data == null) {
         } else {
             console.log(data);
-            res.render('user.ejs', { item: data });
+            res.render('user_list.ejs', { item: data });
         }
     });
 });
