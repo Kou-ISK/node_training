@@ -30,25 +30,27 @@ button {
 
 .modal {
     position: absolute;
-    top: 20%;
-    left: 10%;
+    top: 5%;
     background-color: #e6ecf0;
-    padding: 20px 0 40px;
     border-radius: 10px;
-    width: 80vw;
     height: auto;
     text-align: center;
 }
 
-.fa-times {
+.close-button {
     position: absolute;
     top: 12px;
-    right: 12px;
-    color: rgba(242, 241, 241, 0.873);
+    right: 5px;
+    /* color: rgba(242, 241, 241, 0.873); */
     cursor: pointer;
 }
 
 #registration-form,
 #find-user-form {
     width: 100%;
+}
+
+span {
+    color: red;
+    font-style: italic;
 }

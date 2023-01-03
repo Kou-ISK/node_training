@@ -1,14 +1,18 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <div class="card modal" id="user-registration-modal">
-    <div class="container row">
-        <h2 clsss="text-center">ユーザー登録</h2>
-        <i class="bi bi-x-circle ml-4" id="user-registration-close-modal"></i>
-    </div>
-    <form method="POST" action="registration" class="mx-4">
-        <label for="name" class="form-label">ユーザー名</label>
-        <input name="name" id="name" class="form-control my-2 mx-2" type="text" placeholder="ユーザー名"></textarea>
-        <label for="email" class="form-label">メールアドレス</label>
-        <input type="email" name="email" id="email" class="form-control my-2 mx-2" placeholder="メールアドレス" />
+    <h2 clsss="text-center">ユーザー登録</h2>
+    <i class="bi bi-x-circle close-button" id="user-registration-close-modal"></i>
+    <form method="POST" action="registration" class="mx-2" id="registration-form">
+        <div class="d-flex justify-content-between">
+            <label for="name" class="form-label mr-4">ユーザー名</label>
+            <input name="name" id="name" class="form-control my-2" type="text" placeholder="ユーザー名">
+        </div><br>
+        <span id="username-error-message"></span><br>
+        <div class="d-flex justify-content-between">
+            <label for="email" class="form-label mr-4">メールアドレス</label>
+            <input type="email" name="email" id="email" class="form-control my-2" placeholder="メールアドレス" />
+        </div>
+        <span id="email-error-message"></span><br>
         <button type="submit" class="btn btn-primary my-2 mx-4">送信</button>
     </form>
 </div>
