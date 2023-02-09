@@ -63,7 +63,7 @@ app.post('/registration', (req, res) => {
         'url': 'http://localhost:8080/users/add',
         "headers": { "content-type": "application/json" },
         "json": {
-            'userName': req.body.name,
+            'name': req.body.name,
             'email': req.body.email
         }
     };
